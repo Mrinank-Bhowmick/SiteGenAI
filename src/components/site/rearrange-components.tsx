@@ -39,22 +39,19 @@ const SortableItem = ({
 
 const RearrangeComponents = (props: componentList) => {
   const { list, setRenderComponents } = props;
-  const [componentList, setComponentList] = useState<string[]>(list);
-  //const {setRenderComponents} = list;
+
   useEffect(() => {
-    setRenderComponents(componentList);
-  }, [componentList,setRenderComponents]);
+    setRenderComponents(list);
+  }, [list, setRenderComponents]);
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
-      setComponentList((items) => {
+      setRenderComponents((items) => {
         const oldIndex = items.indexOf(active.id.toString());
         const newIndex = items.indexOf(over.id.toString());
         return arrayMove(items, oldIndex, newIndex);
       });
-      console.log(componentList);
-      setRenderComponents(componentList);
     }
   };
 
@@ -64,8 +61,8 @@ const RearrangeComponents = (props: componentList) => {
         modifiers={[restrictToVerticalAxis]}
         onDragEnd={handleDragEnd}
       >
-        <SortableContext items={componentList}>
-          {componentList.map((element) => (
+        <SortableContext items={list}>
+          {list.map((element) => (
             <SortableItem key={element} id={element}>
               {element}
             </SortableItem>

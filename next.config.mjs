@@ -2,7 +2,7 @@
 const nextConfig = {
   //output: "export",
   images: {
-    domains: ["assets.aceternity.com"],
+    domains: ["assets.aceternity.com", "pbs.twimg.com"],
   },
 };
 
